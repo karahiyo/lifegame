@@ -44,12 +44,20 @@ class LifeGameTest < Test::Unit::TestCase
 
   def test_next
     lg = LifeGame.new([[1,1,0],[1,0,0],[0,0,0]])
-    lg.display
-    lg.next
-    lg.display
+    #lg.display
+    map = lg.next
+    assert_equal [[1,1,0],[1,1,0],[0,0,0]], map
+    #lg.display
   end
 
-
+  def test_next_loop
+    lg = LifeGame.new([[1,1,0],[1,0,0],[0,0,0]])
+    5.times do 
+      lg.display
+      map = lg.next
+      assert_equal [[1,1,0],[1,1,0],[0,0,0]], map
+    end
+  end
 
 end
 
