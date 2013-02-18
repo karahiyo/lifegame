@@ -9,6 +9,7 @@ class LifeGameTest < Test::Unit::TestCase
 
   def test_surround
     lg = LifeGame.new([[1,1,0],[1,0,0],[0,0,0]])
+    puts lg.map.size
     a = lg.surround(1,1)
     assert_equal 3, a
     b = lg.surround(0,0)
@@ -47,6 +48,8 @@ class LifeGameTest < Test::Unit::TestCase
     lg.next
     lg.display
   end
+
+
 
 end
 

@@ -8,7 +8,7 @@ class LifeGame
   # ƒ}ƒbƒv‚ğ‰Šú‰»
   def initialize(map)
     @map = map
-    @x = map[0].size - 1
+    @x = map[0].size - 1 
     @y = map.size - 1
   end
 
@@ -48,12 +48,13 @@ class LifeGame
     life = 1
     a = surround(n,m)
     life = 0 if a <= 1 || a >= 4
+    life
   end
 
   # Ÿ¢‘ã‚ÌArriveList‚ğ•Ô‚·
   def next
-    @x.times do |n|
-      @y.times do |m|
+    (0..@x).each do |n|
+      (0..@y).each do |m|
         case map[n][m]
         when 0 
           map[n][m] =  willbeBorn(n,m)
@@ -68,8 +69,8 @@ class LifeGame
     
   def display
     puts "\n*******************"
-    @x.times do |n|
-      @y.times do |m|
+    (0..@x).each do |n|
+      (0..@y).each do |m|
         printf "#{map[n][m]} "
       end
       printf "\n"
