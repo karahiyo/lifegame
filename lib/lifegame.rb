@@ -24,11 +24,9 @@ class LifeGame
           n==x && m==y
           next
         end
-        puts "map(n,m) :: (#{n},#{m}) = #{map[n][m]}"
         arrive_num += 1 if @map[n][m] == 1
       end
     end
-    puts "arrive_num = #{arrive_num}"
     arrive_num
   end
 
@@ -51,35 +49,35 @@ class LifeGame
   def deadOr(n,m)
     life = 1
     a = surround(n,m)
-    puts "surround = #{a}"
     life = 0 if a <= 1 || a >= 4  
     life
   end
 
+  # !New! [‰ß‘a] & [‰ß–§] 
   def nextdeadOr(n,m)
     life = 0
     a = surround(n,m)
-    puts "surround = #{a}"
     life = 1 if a <= 1 || a >= 4
     life
   end
 
   # ŽŸ¢‘ã‚ÌArriveList‚ð•Ô‚·
   def next
-    nextmap = [[0,0,0],[0,0,0],[0,0,0]]
+    #nextmap = Array.new(@x).map{ Array.new(@x,0)} 
+    #(0..@x).each do |n|
+    #  (0..@y).each do |m|
+    #    nextmap[n][m] = 0
+    #  end
+    #end
+    
+    nextmap = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
     (0..@x).each do |n|
       (0..@y).each do |m|
         case map[n][m]
         when 0 
-          puts "\n>> willbeBorn (#{n},#{m})"
-          puts "before -> #{map[n][m]}"
           nextmap[n][m] =  willbeBorn(n,m)
-          puts "after -> #{nextmap[n][m] ^ map[n][m]}"
         when 1
-          puts "\n>> deadOr (#{n},#{m})"
-          puts "before -> #{map[n][m]}"
           nextmap[n][m] = nextdeadOr(n,m)
-          puts "after -> #{nextmap[n][m] ^ map[n][m]}"
         end
       end
     end
@@ -92,6 +90,15 @@ class LifeGame
     end
 
     map
+  end
+
+  def renew
+    (0..@x).each do |n|
+      (0..@y).each do |m|
+        nextmap[n][m] = 0
+      end
+    end
+    nextmap
   end
     
   def display

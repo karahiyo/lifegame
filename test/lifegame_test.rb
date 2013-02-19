@@ -50,7 +50,7 @@ class LifeGameTest < Test::Unit::TestCase
     #lg.display
   end
 
-  def test_next_loop
+  def test_loop
     puts "*********** [ test_next_loop ] ************"
     lg = LifeGame.new([[1,1,0],[1,0,0],[0,0,0]])
     5.times do 
@@ -58,22 +58,40 @@ class LifeGameTest < Test::Unit::TestCase
       map = lg.next
       assert_equal [[1,1,0],[1,1,0],[0,0,0]], map
     end
-    lg.position_display
+    #lg.position_display
   end
 
-  def test_next_loop_2
+  def test_loop_2
     puts "************ [ test_next_loop 2 ] ************"
     lg = LifeGame.new([[0,1,0],[1,1,0],[0,0,1]])
     #5.times do 
-      lg.display
+      #lg.display
       map = lg.next
        assert_equal [[1,1,0],[1,1,1],[0,1,0]], map
-      #map = lg.next
-      #assert_equal [[[1,1,0],[0,1,1],[1,1,0]]], map
+       #lg.display
+      map = lg.next
+        assert_equal [[1,0,1],[0,0,1],[1,1,1]], map
+        #lg.display
     #end
   end
 
+  def test_loop3
+    puts "**********[ test_loop 3]**************"
+    lg = LifeGame.new([[0,1,0],[1,1,0],[0,0,1]])
+    5.times do
+      lg.display
+      map = lg.next
+    end
+  end
 
+  def test_loop4
+    puts "*********[ test loop 4]*************"
+    lg = LifeGame.new([[0,0,0,0,0],[0,0,1,1,0],[0,0,1,0,0],[1,0,0,1,0],[0,0,1,0,0]])
+    5.times do
+      lg.display
+      map = lg.next
+    end
+  end
 
 end
 
