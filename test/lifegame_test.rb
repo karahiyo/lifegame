@@ -36,9 +36,9 @@ class LifeGameTest < Test::Unit::TestCase
     assert_equal 0, c
   end
 
-  def test_deador
+  def test_deadOr
     lg = LifeGame.new([[1,1,0],[1,0,0],[0,0,1]])
-    a = lg.deador(2,2)
+    a = lg.deadOr(2,2)
     assert_equal 0, a
   end
 
@@ -51,13 +51,29 @@ class LifeGameTest < Test::Unit::TestCase
   end
 
   def test_next_loop
+    puts "*********** [ test_next_loop ] ************"
     lg = LifeGame.new([[1,1,0],[1,0,0],[0,0,0]])
     5.times do 
-      lg.display
+      #lg.display
       map = lg.next
       assert_equal [[1,1,0],[1,1,0],[0,0,0]], map
     end
+    lg.position_display
   end
+
+  def test_next_loop_2
+    puts "************ [ test_next_loop 2 ] ************"
+    lg = LifeGame.new([[0,1,0],[1,1,0],[0,0,1]])
+    #5.times do 
+      lg.display
+      map = lg.next
+       assert_equal [[1,1,0],[1,1,1],[0,1,0]], map
+      #map = lg.next
+      #assert_equal [[[1,1,0],[0,1,1],[1,1,0]]], map
+    #end
+  end
+
+
 
 end
 

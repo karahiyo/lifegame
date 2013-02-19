@@ -4,10 +4,12 @@
 class LifeGame
   attr_reader :x, :y
   attr_accessor :map
+  attr_accessor :nextmap
 
   # ƒ}ƒbƒv‚ğ‰Šú‰»
   def initialize(map)
     @map = map
+    @nextmap
     @x = map[0].size - 1 
     @y = map.size - 1
   end
@@ -22,9 +24,11 @@ class LifeGame
           n==x && m==y
           next
         end
+        puts "map(n,m) :: (#{n},#{m}) = #{map[n][m]}"
         arrive_num += 1 if @map[n][m] == 1
       end
     end
+    puts "arrive_num = #{arrive_num}"
     arrive_num
   end
 
@@ -44,23 +48,46 @@ class LifeGame
   end
 
   # [‰ß‘a] & [‰ß–§]
-  def deador(n,m)
+  def deadOr(n,m)
     life = 1
     a = surround(n,m)
-    life = 0 if a <= 1 || a >= 4
+    puts "surround = #{a}"
+    life = 0 if a <= 1 || a >= 4  
+    life
+  end
+
+  def nextdeadOr(n,m)
+    life = 0
+    a = surround(n,m)
+    puts "surround = #{a}"
+    life = 1 if a <= 1 || a >= 4
     life
   end
 
   # Ÿ¢‘ã‚ÌArriveList‚ğ•Ô‚·
   def next
+    nextmap = [[0,0,0],[0,0,0],[0,0,0]]
     (0..@x).each do |n|
       (0..@y).each do |m|
         case map[n][m]
         when 0 
-          map[n][m] =  willbeBorn(n,m)
+          puts "\n>> willbeBorn (#{n},#{m})"
+          puts "before -> #{map[n][m]}"
+          nextmap[n][m] =  willbeBorn(n,m)
+          puts "after -> #{nextmap[n][m] ^ map[n][m]}"
         when 1
-          map[n][m] = deador(n,m)
+          puts "\n>> deadOr (#{n},#{m})"
+          puts "before -> #{map[n][m]}"
+          nextmap[n][m] = nextdeadOr(n,m)
+          puts "after -> #{nextmap[n][m] ^ map[n][m]}"
         end
+      end
+    end
+    
+    # map‚Ænextmap‚Å”r‘¼‚·‚é‚Ænextmap‚É
+    (0..@x).each do |n|
+      (0..@y).each do |m|
+        map[n][m] = map[n][m] ^ nextmap[n][m]
       end
     end
 
@@ -77,4 +104,16 @@ class LifeGame
     end
     printf "*******************\n"
   end
+
+  def position_display
+    puts "\n*******************"
+      (0..@x).each do |n|
+        (0..@y).each do |m|
+          printf "#{n},#{m} "
+      end
+      printf "\n"
+    end
+    printf "*******************\n"
+  end
+    
 end
