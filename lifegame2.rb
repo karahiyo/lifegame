@@ -25,7 +25,7 @@ begin
   v = LifeGame::ConsolView.new(lg)
   v.visualize
 
-  500.times do |x|
+  100.times do |x|
     sleep(1)
     Curses.refresh
     Curses.clear

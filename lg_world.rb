@@ -15,21 +15,23 @@ module LifeGame
     # 周辺の生きているノード数を返す
     def surround(x,y)
       arrive_num = 0
-      (x-1 .. x+1).each do |n|
-        (y-1 .. y+1).each do |m|
+      (y-1 .. y+1).each do |m|
+        (x-1 .. x+1).each do |n|
           if n < 0 || m < 0  ||
-            n >= @height || m >= @width ||
+            n >= @width || m >= @height ||
             (n==x && m==y)
             next
           end
-          arrive_num += 1 if @world[n][m] == 1
+          arrive_num += 1 if @world[m][n] == 1
         end
       end
+      print arrive_num, "\r\n"
       arrive_num
     end
 
     # [誕生]
     def willbeBorn(n,m)
+      print surround(n, m), "\r\n"
       life = surround(n,m)==3?1:0
     end
 
@@ -48,11 +50,11 @@ module LifeGame
       @nextworld = @world
       @height.times do |y|
         @width.times do |x|
-          case @world[x][y]
+          case @world[y][x]
           when 0
-            @nextworld[x][y] =  willbeBorn(x,y)
+            @nextworld[y][x] =  willbeBorn(x, y)
           when 1
-            @nextworld[x][y] = deadOr(x,y)
+            @nextworld[y][x] = deadOr(x, y)
           end
         end
       end
