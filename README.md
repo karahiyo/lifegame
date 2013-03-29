@@ -30,6 +30,8 @@ In the "objects" file,  there are some interesting pattern of lifegame.
 4. pulsar
 5. glider_gun
 6. pentadecathion
+7. diehard
+8. acorn
 
 ## Screenshot
 ![Generation 0](img/pentadecathion1.png)

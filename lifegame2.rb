@@ -25,14 +25,16 @@ begin
   v = LifeGame::ConsolView.new(lg)
   v.visualize
 
-  1000.times do |x|
-    sleep(30)
+  (1..150).each do |x|
+    sleep(0.1)
     Curses.refresh
     Curses.clear
     print "Generation #{x}\r\n"
     lg.next
     v.visualize
   end
+  print ">> END"
+  sleep(10)
 ensure
   Curses.close_screen
 end
