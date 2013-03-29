@@ -26,15 +26,31 @@ module LifeGame
 
     def test_compound_next
       lg = LifeGame::World.new([[0, 1, 0], [0, 1, 0], [0, 1, 0]])
-      nextworld = lg.world
-      assert_equal [[0, 1, 0], [0, 1, 0], [0, 1, 0]], nextworld
-
+      @nextworld = lg.world.map{|x| x.clone}
+      assert_equal [[0, 1, 0], [0, 1, 0], [0, 1, 0]], @nextworld
+      lg.height.times do |y|
+        lg.width.times do |x|
+          print "[#{lg.world[y][x]} (#{x}, #{y})]\n"
+          case lg.world[y][x]
+          when 0
+            print "{case 0}", lg.world[y][x], "=> "
+            @nextworld[y][x] = lg.willbeBorn(x, y)
+            print @nextworld[y][x], "\n"
+          when 1
+            print "{case 1}", lg.world[y][x], "=>"
+            @nextworld[y][x] = lg.deadOr(x, y)
+            print @nextworld[y][x], "\n"
+          end
+        end
+      end
+      assert_equal [[0, 0, 0], [1, 1, 1], [0, 0, 0]], @nextworld
+      puts ""
     end
 
     def test_next
       lg = LifeGame::World.new([[0, 1, 0], [0, 1, 0], [0, 1, 0]])
-      _nextworld = lg.next
-      assert_equal [[0, 0, 0], [1, 1, 1], [0, 0, 0]], _nextworld
+      @nextworld = lg.next
+      assert_equal [[0, 0, 0], [1, 1, 1], [0, 0, 0]], @nextworld
     end
   end
 end

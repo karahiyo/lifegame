@@ -25,29 +25,27 @@ module LifeGame
           arrive_num += 1 if @world[m][n] == 1
         end
       end
-      print arrive_num, "\r\n"
       arrive_num
     end
 
     # [誕生]
     def willbeBorn(n,m)
-      print surround(n, m), "\r\n"
-      life = surround(n,m)==3?1:0
+      (surround(n,m)==3)?1:0
     end
 
     # [生存]
     def servive(n,m)
-      life = ((2..3).include?surround(n, m))?1:0
+      ((2..3).include?surround(n, m))?1:0
     end
 
     # [過疎] & [過密]
     def deadOr(n,m)
-      life = ([0, 1, 4, 5, 6, 7, 8].include?surround(n, m))?0:1
+      ([0, 1, 4, 5, 6, 7, 8].include?surround(n, m))?0:1
     end
 
     # 次世代のArriveListを返す
     def next
-      @nextworld = @world
+      @nextworld = @world.map{|x| x.clone}
       @height.times do |y|
         @width.times do |x|
           case @world[y][x]
