@@ -26,7 +26,7 @@ begin
   v.visualize
 
   1000.times do |x|
-    sleep(1)
+    sleep(30)
     Curses.refresh
     Curses.clear
     print "Generation #{x}\r\n"

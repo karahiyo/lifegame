@@ -1,7 +1,13 @@
 LifeGame
 ==================
 
->"Conway game",  which redirects to here,  can also refer to games as defined by surreal numbers,  which John Conway also developed.
+>"Conway game",
+>which redirects to here,
+>can also refer to games as defined by surreal numbers,
+>which John Conway also developed.
+
+<http://ja.wikipedia.org/wiki/ライフゲーム>
+<http://en.wikipedia.org/wiki/Conway's_Game_of_Life>
 
 
 ## Rules
@@ -15,39 +21,19 @@ LifeGame
 4. [Birth]
     Any dead cell with exactly three live neighbours becomes a live cell,  as if by reproduction.
 
+## start simulation
+In the "objects" file,  there are some interesting pattern of lifegame.
+
+1. blinker
+2. glider
+3. galaxy
+4. pulsar
+5. glider_gun
+6. pentadecathion
+
 ## Screenshot
-
-    : $ruby lifegame.rb
-!
-
-    ■ □ ■ □
-    □ □ ■ ■
-    ■ ■ □ □
-    ■ ■ ■ ■
-    Generation 0
-    □ □ □ ■
-    □ ■ ■ □
-    ■ ■ □ □
-    ■ ■ ■ ■
-    Generation 1
-    □ □ □ ■
-    □ ■ ■ □
-    ■ ■ □ □
-    ■ ■ ■ ■
-    Generation 2
-    □ □ □ ■
-    □ ■ ■ □
-    ■ ■ □ □
-    ■ ■ ■ ■
-    Generation 3
-    □ □ □ ■
-    □ ■ ■ □
-    ■ ■ □ □
-    ■ ■ ■ ■
-    Generation 4
-    □ □ □ ■
-    □ ■ ■ □
-    ■ ■ □ □
-    ■ ■ ■ ■
+![Generation 0](img/pentadecathion1.png)
+![Generation 1](img/pentadecathion2.png)
+![Generation 2](img/pentadecathion3.png)
 
 ## Meta
