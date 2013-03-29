@@ -43,7 +43,7 @@ module LifeGame
       ([0, 1, 4, 5, 6, 7, 8].include?surround(n, m))?0:1
     end
 
-    # 次世代のArriveListを返す
+    # 次世代のworldをかえす
     def next
       @nextworld = @world.map{|x| x.clone}
       @height.times do |y|
