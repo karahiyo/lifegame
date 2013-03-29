@@ -10,7 +10,7 @@ module LifeGame
     def visualize
       @map.height.times do |y|
         @map.width.times do |x|
-          print @map.world[x][y]==1?"□ ":"■ "
+          print @map.world[y][x]==1?"□ ":"■ "
         end
         print "\r\n"
       end
