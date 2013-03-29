@@ -7,6 +7,7 @@ LifeGame
 >which John Conway also developed.
 
 <http://ja.wikipedia.org/wiki/ライフゲーム>
+
 <http://en.wikipedia.org/wiki/Conway's_Game_of_Life>
 
 
@@ -35,7 +36,9 @@ In the "objects" file,  there are some interesting pattern of lifegame.
 
 ## Screenshot
 ![Generation 0](img/pentadecathion1.png)
+
 ![Generation 1](img/pentadecathion2.png)
+
 ![Generation 2](img/pentadecathion3.png)
 
 ## Meta
