@@ -8,6 +8,21 @@ require 'test/unit'
 module LifeGame
   class LifeGameTest < Test::Unit::TestCase
 
+    def test_read_object
+      world = []
+      File.open('objects/blinker.txt') do |f|
+        f.each_line do |line|
+          line.chop!
+          tmp = line.split(", ")
+          tmp.map! {|v| v.to_i}
+          world << tmp
+        end
+      end
+      print world
+      assert_equal [[0, 1, 0], [0, 1, 0], [0, 1, 0]], world
+
+    end
+
     def test_surround
       lg = LifeGame::World.new([[0, 1, 0], [0, 1, 0], [0, 1, 0]])
       a = lg.surround(1, 1)
@@ -30,16 +45,11 @@ module LifeGame
       assert_equal [[0, 1, 0], [0, 1, 0], [0, 1, 0]], @nextworld
       lg.height.times do |y|
         lg.width.times do |x|
-          print "[#{lg.world[y][x]} (#{x}, #{y})]\n"
           case lg.world[y][x]
           when 0
-            print "{case 0}", lg.world[y][x], "=> "
             @nextworld[y][x] = lg.willbeBorn(x, y)
-            print @nextworld[y][x], "\n"
           when 1
-            print "{case 1}", lg.world[y][x], "=>"
             @nextworld[y][x] = lg.deadOr(x, y)
-            print @nextworld[y][x], "\n"
           end
         end
       end
